@@ -57,6 +57,7 @@ func verify_direction() -> void:
 		
 		
 func action_behavior() -> void:
+	character.set_physics_process(false)
 	if character.is_digging:
 		change_sprite("dig")
 		
@@ -86,3 +87,4 @@ func on_animation_finished(anim_name: String) -> void:
 	match anim_name:
 		"dig":
 			character.is_digging = false
+			character.set_physics_process(true)
