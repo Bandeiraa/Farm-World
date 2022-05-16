@@ -44,22 +44,37 @@ func sprint() -> float:
 func action() -> void:
 	if not on_action:
 		if Input.is_action_just_pressed("attacking") and not is_attacking:
-			is_attacking = true
-			tool_timer.start(1.0)
+			action_state("Attacking", 1.0)
 			
-		if Input.is_action_just_pressed("dig") and not is_digging:
-			is_digging = true
-			tool_timer.start(1.3)
+		elif Input.is_action_just_pressed("dig") and not is_digging:
+			action_state("Digging", 1.3)
 			
 		elif Input.is_action_just_pressed("axe") and not is_axing:
-			is_axing = true
-			tool_timer.start(1.0)
+			action_state("Axing", 1.0)
 			
 		elif Input.is_action_just_pressed("mining") and not is_mining:
+			action_state("Mining", 1.0)
+			
+			
+func action_state(state: String, state_time: float) -> void:
+	tool_timer.start(state_time)
+	match state:
+		"Attacking":
+			is_attacking = true
+			
+		"Digging":
+			is_digging = true
+			
+		"Axing":
+			is_axing = true
+			
+		"Mining":
 			is_mining = true
-			tool_timer.start(1.0)
 			
-			
+	on_action = true
+	set_physics_process(false)
+	
+	
 func on_tool_timer_timeout() -> void:
 	on_action = false
 	set_physics_process(true)

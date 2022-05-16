@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
+"base": "KinematicBody2D",
 "class": "CharacterBase",
 "language": "GDScript",
 "path": "res://scripts/character/character_base.gd"
@@ -27,6 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Farm World"
+run/main_scene="res://scenes/management/level.tscn"
 config/icon="res://icon.png"
 
 [autoload]

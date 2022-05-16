@@ -74,8 +74,6 @@ func verify_direction() -> void:
 		
 		
 func action_behavior() -> void:
-	character.on_action = true
-	character.set_physics_process(false)
 	if character.is_attacking:
 		change_sprite("attack")
 		
