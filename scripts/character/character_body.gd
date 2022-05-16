@@ -36,6 +36,12 @@ var sprites_dict: Dictionary = {
 		"",
 		"",
 		""
+	],
+	
+	"attack": [
+		"",
+		"",
+		""
 	]
 }
 
@@ -54,7 +60,7 @@ func get_character_info() -> void:
 			
 func animate() -> void:
 	verify_direction()
-	if character.is_digging or character.is_axing or character.is_mining:
+	if character.is_digging or character.is_axing or character.is_mining or character.is_attacking:
 		action_behavior()
 	else:
 		move_behavior()
@@ -70,7 +76,10 @@ func verify_direction() -> void:
 func action_behavior() -> void:
 	character.on_action = true
 	character.set_physics_process(false)
-	if character.is_digging:
+	if character.is_attacking:
+		change_sprite("attack")
+		
+	elif character.is_digging:
 		change_sprite("dig")
 		
 	elif character.is_axing:
@@ -111,3 +120,6 @@ func on_animation_finished(anim_name: String) -> void:
 			
 		"mining":
 			character.is_mining = false
+			
+		"attack":
+			character.is_attacking = false

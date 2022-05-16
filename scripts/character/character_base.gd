@@ -12,6 +12,7 @@ var is_axing: bool = false
 var is_mining: bool = false
 var is_digging: bool = false
 var is_sprinting: bool = false
+var is_attacking: bool = false
 
 export(int) var speed
 
@@ -42,6 +43,10 @@ func sprint() -> float:
 	
 func action() -> void:
 	if not on_action:
+		if Input.is_action_just_pressed("attacking") and not is_attacking:
+			is_attacking = true
+			tool_timer.start(1.0)
+			
 		if Input.is_action_just_pressed("dig") and not is_digging:
 			is_digging = true
 			tool_timer.start(1.3)
