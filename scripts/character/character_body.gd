@@ -104,16 +104,10 @@ func change_direction(is_flipped: bool) -> void:
 func on_animation_finished(anim_name: String) -> void:
 	match anim_name:
 		"dig":
-			character.on_action = false
 			character.is_digging = false
-			character.set_physics_process(true)
 			
 		"axe":
 			character.is_axing = false
-			character.on_action = false
-			character.set_physics_process(true)
 			
 		"mining":
 			character.is_mining = false
-			character.on_action = false
-			character.set_physics_process(true)

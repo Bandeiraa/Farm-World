@@ -2,6 +2,7 @@ extends KinematicBody2D
 class_name CharacterBase
 
 onready var body: Node2D = get_node("Body")
+onready var tool_timer: Timer = get_node("ToolTimer")
 
 var velocity: Vector2
 
@@ -43,9 +44,17 @@ func action() -> void:
 	if not on_action:
 		if Input.is_action_just_pressed("dig") and not is_digging:
 			is_digging = true
+			tool_timer.start(1.3)
 			
 		elif Input.is_action_just_pressed("axe") and not is_axing:
 			is_axing = true
+			tool_timer.start(1.0)
 			
 		elif Input.is_action_just_pressed("mining") and not is_mining:
 			is_mining = true
+			tool_timer.start(1.0)
+			
+			
+func on_tool_timer_timeout() -> void:
+	on_action = false
+	set_physics_process(true)
