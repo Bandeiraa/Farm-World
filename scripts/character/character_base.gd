@@ -5,6 +5,9 @@ onready var body: Node2D = get_node("Body")
 
 var velocity: Vector2
 
+var on_action: bool = false
+
+var is_axing: bool = false
 var is_digging: bool = false
 var is_sprinting: bool = false
 
@@ -36,5 +39,9 @@ func sprint() -> float:
 	
 	
 func action() -> void:
-	if Input.is_action_just_pressed("dig") and not is_digging:
-		is_digging = true
+	if not on_action:
+		if Input.is_action_just_pressed("dig") and not is_digging:
+			is_digging = true
+			
+		elif Input.is_action_just_pressed("axe") and not is_axing:
+			is_axing = true

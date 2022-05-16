@@ -1,10 +1,16 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/character/character_base.gd" type="Script" id=1]
+[ext_resource path="res://assets/character/idle/base.png" type="Texture" id=2]
+[ext_resource path="res://assets/character/idle/tool.png" type="Texture" id=3]
 [ext_resource path="res://scripts/character/character_body.gd" type="Script" id=4]
+[ext_resource path="res://assets/character/idle/hair/bowl.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
+
+[sub_resource type="Animation" id=6]
+resource_name = "axe"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Base:frame")
 tracks/0/interp = 1
@@ -12,10 +18,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Body/Tool:frame")
@@ -24,10 +30,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Body/Hair:frame")
@@ -36,10 +42,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Animation:playback_speed")
@@ -51,7 +57,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 2.0 ]
+"values": [ 1.0 ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Body/Base:hframes")
@@ -62,8 +68,8 @@ tracks/4/enabled = true
 tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 9 ]
+"update": 1,
+"values": [ 10 ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Body/Tool:hframes")
@@ -74,8 +80,8 @@ tracks/5/enabled = true
 tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 9 ]
+"update": 1,
+"values": [ 10 ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Body/Hair:hframes")
@@ -86,8 +92,8 @@ tracks/6/enabled = true
 tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 9 ]
+"update": 1,
+"values": [ 10 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -455,17 +461,21 @@ character = NodePath("..")
 animation = NodePath("../Animation")
 
 [node name="Base" type="Sprite" parent="Body"]
+texture = ExtResource( 2 )
 hframes = 9
 
 [node name="Tool" type="Sprite" parent="Body"]
+texture = ExtResource( 3 )
 hframes = 9
 
 [node name="Hair" type="Sprite" parent="Body"]
+texture = ExtResource( 5 )
 hframes = 9
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 playback_speed = 2.0
 anims/RESET = SubResource( 1 )
+anims/axe = SubResource( 6 )
 anims/dig = SubResource( 5 )
 anims/idle = SubResource( 2 )
 anims/run = SubResource( 4 )

@@ -23,5 +23,11 @@ var player_skin_data: Dictionary = { #placeholder info, change later
 		"res://assets/character/dig/base.png",
 		"res://assets/character/dig/tool.png",
 		"res://assets/character/dig/hair/bowl.png"
+	],
+	
+	"axe": [
+		"res://assets/character/axe/base.png",
+		"res://assets/character/axe/tool.png",
+		"res://assets/character/axe/hair/bowl.png"
 	]
 }

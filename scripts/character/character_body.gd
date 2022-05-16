@@ -1,7 +1,6 @@
 extends Node2D
 class_name CharacterBody
 
-var current_key: String = "idle"
 var sprites_dict: Dictionary = {
 	"idle": [
 		"",
@@ -25,6 +24,12 @@ var sprites_dict: Dictionary = {
 		"",
 		"",
 		""
+	],
+	
+	"axe": [
+		"",
+		"",
+		""
 	]
 }
 
@@ -43,7 +48,7 @@ func get_character_info() -> void:
 			
 func animate() -> void:
 	verify_direction()
-	if character.is_digging:
+	if character.is_digging or character.is_axing:
 		action_behavior()
 	else:
 		move_behavior()
@@ -57,9 +62,13 @@ func verify_direction() -> void:
 		
 		
 func action_behavior() -> void:
+	character.on_action = true
 	character.set_physics_process(false)
 	if character.is_digging:
 		change_sprite("dig")
+		
+	elif character.is_axing:
+		change_sprite("axe")
 		
 		
 func move_behavior() -> void:
@@ -86,5 +95,11 @@ func change_direction(is_flipped: bool) -> void:
 func on_animation_finished(anim_name: String) -> void:
 	match anim_name:
 		"dig":
+			character.on_action = false
 			character.is_digging = false
+			character.set_physics_process(true)
+			
+		"axe":
+			character.is_axing = false
+			character.on_action = false
 			character.set_physics_process(true)
