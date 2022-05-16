@@ -19,6 +19,12 @@ var sprites_dict: Dictionary = {
 		"",
 		"",
 		""
+	],
+	
+	"dig": [
+		"",
+		"",
+		""
 	]
 }
 
@@ -37,9 +43,12 @@ func get_character_info() -> void:
 			
 func animate() -> void:
 	verify_direction()
-	move_behavior()
-	
-	
+	if character.is_digging:
+		action_behavior()
+	else:
+		move_behavior()
+		
+		
 func verify_direction() -> void:
 	if character.velocity.x > 0:
 		change_direction(false)
@@ -47,8 +56,13 @@ func verify_direction() -> void:
 		change_direction(true)
 		
 		
+func action_behavior() -> void:
+	if character.is_digging:
+		change_sprite("dig")
+		
+		
 func move_behavior() -> void:
-	if character.is_sprint and character.velocity != Vector2.ZERO:
+	if character.is_sprinting and character.velocity != Vector2.ZERO:
 		change_sprite("run")
 	elif character.velocity != Vector2.ZERO:
 		change_sprite("walk")
@@ -66,3 +80,9 @@ func change_sprite(anim: String) -> void:
 func change_direction(is_flipped: bool) -> void:
 	for children in get_children():
 		children.flip_h = is_flipped
+		
+		
+func on_animation_finished(anim_name: String) -> void:
+	match anim_name:
+		"dig":
+			character.is_digging = false

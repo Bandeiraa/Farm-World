@@ -4,12 +4,15 @@ class_name CharacterBase
 onready var body: Node2D = get_node("Body")
 
 var velocity: Vector2
-var is_sprint: bool = false
+
+var is_digging: bool = false
+var is_sprinting: bool = false
 
 export(int) var speed
 
 func _physics_process(_delta: float) -> void:
 	move()
+	action()
 	body.animate()
 	
 	
@@ -25,8 +28,13 @@ func move() -> void:
 	
 func sprint() -> float:
 	if Input.is_action_pressed("sprint"):
-		is_sprint = true
+		is_sprinting = true
 		return 1.5
 		
-	is_sprint = false
+	is_sprinting = false
 	return 1.0
+	
+	
+func action() -> void:
+	if Input.is_action_just_pressed("dig") and not is_digging:
+		is_digging = true
