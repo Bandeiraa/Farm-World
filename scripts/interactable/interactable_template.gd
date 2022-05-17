@@ -1,6 +1,8 @@
 extends Area2D
 class_name InteractableTemplate
 
+onready var animation: AnimationPlayer = get_node("Animation")
+
 export(int) var health
 export(Array, Array, String) var effective_tools
 
@@ -16,3 +18,5 @@ func update_health(damage: int) -> void:
 	health -= damage
 	if health <= 0:
 		queue_free()
+		
+	animation.play("bush_hit")
