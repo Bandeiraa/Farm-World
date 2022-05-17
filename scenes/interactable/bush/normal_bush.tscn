@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/interactable/interactable_template.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/interactable/bush/bush.png" type="Texture" id=2]
@@ -39,6 +39,9 @@ tracks/0/keys = {
 "values": [ 0.0, 0.4, -0.2, 0.0 ]
 }
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 8, 8 )
+
 [node name="Bush" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
 effective_tools = [ [ "Attack", "3" ], [ "Axe", "5" ] ]
@@ -54,3 +57,7 @@ shape = SubResource( 1 )
 [node name="Animation" parent="." index="2"]
 anims/RESET = SubResource( 3 )
 anims/bush_hit = SubResource( 2 )
+
+[node name="Collision" parent="PhysicBody" index="0"]
+position = Vector2( 0, 4 )
+shape = SubResource( 4 )

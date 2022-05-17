@@ -6,6 +6,7 @@ onready var prop: TileMap = get_node("Prop")
 onready var prop_id_list: Array = prop.tile_set.get_tiles_ids()
 
 var busy_tiles_list: Array #Sand tiles list
+var prop_tiles_list: Array #Prop tiles list
 
 export(int) var props_amount
 
@@ -31,6 +32,7 @@ func spawn_prop_tile() -> void:
 			var random_number: int = randi() % 300
 			if amount <= props_amount and random_number <= props_amount:
 				prop.set_cellv(tile, randi() % prop_id_list.size())
+				prop_tiles_list.append(tile)
 				amount += 1
 				
 				

@@ -7,6 +7,9 @@ export(int) var health
 export(Array, Array, String) var effective_tools
 
 func on_area_entered(area: CharacterInteractableArea) -> void:
+	if not area is CharacterInteractableArea:
+		return
+		
 	for character_tool in effective_tools:
 		var current_tool: String = character_tool[0]
 		var tool_damage: int = int(character_tool[1])

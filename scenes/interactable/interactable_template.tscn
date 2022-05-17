@@ -11,4 +11,8 @@ script = ExtResource( 1 )
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 
+[node name="PhysicBody" type="StaticBody2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="PhysicBody"]
+
 [connection signal="area_entered" from="." to="." method="on_area_entered"]

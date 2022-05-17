@@ -6,7 +6,7 @@
 [ext_resource path="res://scripts/env/map.gd" type="Script" id=4]
 [ext_resource path="res://scripts/env/prop.gd" type="Script" id=5]
 [ext_resource path="res://resources/tile/autotile_terrain_sand.tres" type="TileSet" id=6]
-[ext_resource path="res://scenes/interactable/bush/normal_bush.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/env/map_manager.gd" type="Script" id=7]
 
 [node name="Level" type="Node2D"]
 
@@ -35,11 +35,12 @@ tile_set = ExtResource( 3 )
 cell_size = Vector2( 16, 16 )
 format = 1
 
-[node name="InteractableOjects" type="Node2D" parent="."]
-
-[node name="Bush" parent="InteractableOjects" instance=ExtResource( 7 )]
-position = Vector2( 161, 56 )
-health = 9
-
-[node name="Character" parent="." instance=ExtResource( 1 )]
+[node name="MapManager" type="YSort" parent="."]
+script = ExtResource( 7 )
+interactable_amount = 3
+prop = NodePath("../Prop")
 terrain = NodePath("../Terrain")
+
+[node name="Character" parent="MapManager" instance=ExtResource( 1 )]
+position = Vector2( 194, 62 )
+terrain = NodePath("../../Terrain")
