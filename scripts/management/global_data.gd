@@ -1,5 +1,7 @@
 extends Node
 
+const GRID_SIZE: Vector2 = Vector2(16, 16)
+
 var player_skin_data: Dictionary = { #placeholder info, change later
 	"idle": [
 		"res://assets/character/idle/base.png",      #base

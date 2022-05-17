@@ -16,6 +16,8 @@ var is_attacking: bool = false
 
 export(int) var speed
 
+export(NodePath) onready var terrain = get_node(terrain) as Node2D
+
 func _physics_process(_delta: float) -> void:
 	move()
 	action()
@@ -46,7 +48,7 @@ func action() -> void:
 		if Input.is_action_just_pressed("attacking") and not is_attacking:
 			action_state("Attacking", 1.0)
 			
-		elif Input.is_action_just_pressed("dig") and not is_digging:
+		elif Input.is_action_just_pressed("dig") and not is_digging and can_dig():
 			action_state("Digging", 1.3)
 			
 		elif Input.is_action_just_pressed("axe") and not is_axing:
@@ -78,3 +80,16 @@ func action_state(state: String, state_time: float) -> void:
 func on_tool_timer_timeout() -> void:
 	on_action = false
 	set_physics_process(true)
+	
+	
+func can_dig() -> bool:
+	var player_grid_position: Vector2 = position/GlobalData.GRID_SIZE
+	var normalized_grid_position: Vector2 = Vector2(
+		round(player_grid_position.x),
+		round(player_grid_position.y)
+	)
+	
+	if terrain.sand_tiles_list.has(normalized_grid_position):
+		return true
+		
+	return false
