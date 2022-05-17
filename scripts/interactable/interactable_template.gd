@@ -19,3 +19,7 @@ func on_area_entered(area: CharacterInteractableArea) -> void:
 			
 func update_health(_damage: int) -> void:
 	pass
+	
+	
+func kill() -> void:
+	queue_free()

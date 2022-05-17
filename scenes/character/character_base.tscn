@@ -766,5 +766,10 @@ script = ExtResource( 6 )
 shape = SubResource( 10 )
 disabled = true
 
+[node name="Camera" type="Camera2D" parent="."]
+current = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+
 [connection signal="animation_finished" from="Animation" to="Body" method="on_animation_finished"]
 [connection signal="timeout" from="ToolTimer" to="." method="on_tool_timer_timeout"]

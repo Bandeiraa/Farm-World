@@ -4,7 +4,8 @@ class_name MapManager
 var avaliable_tiles: Array = []
 
 var interactable_object_list: Array = [
-	"res://scenes/interactable/bush/normal_bush.tscn"
+	"res://scenes/interactable/bush/normal_bush.tscn",
+	"res://scenes/interactable/bush/strawberry_bush.tscn"
 ]
 
 export(int) var interactable_amount
