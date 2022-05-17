@@ -1,9 +1,57 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/interactable/interactable_template.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/interactable/bush/bush.png" type="Texture" id=2]
-[ext_resource path="res://materials/squish_shader_material.tres" type="Material" id=3]
 [ext_resource path="res://scripts/interactable/normal_bush.gd" type="Script" id=4]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform bool uv_mode = false;
+uniform float x_factor = 2.0;
+uniform float bulge : hint_range(-1,1);
+
+void vertex()
+{
+	VERTEX.x *= x_factor;
+}
+
+float bulge_function(float y)
+{
+	return sqrt(1.0 - y*y);
+}
+
+void fragment()
+{
+	vec2 uv = UV * 2.0 - 1.0;
+	uv.x *= x_factor;
+
+	float displacement = 1.0 + bulge * bulge_function(uv.y);
+	uv.x /= displacement;
+	
+	uv = (uv + 1.0) / 2.0;
+	
+	if(uv_mode)
+	{
+		COLOR = uv.x >= 0.0 && uv.x <= 1.0 ? vec4(uv, 0.0, 1.0) : vec4(vec3(0.0), 1.0);
+	}
+	else if(uv.x >= 0.0 && uv.x <= 1.0)
+	{
+		COLOR = texture(TEXTURE, uv);
+	}
+	else
+	{
+		COLOR = vec4(0.0);
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 2 )
+shader_param/uv_mode = false
+shader_param/x_factor = 2.0
+shader_param/bulge = 0.0
+
+[sub_resource type="StreamTexture" id=6]
+load_path = "res://.import/bush.png-d360900af6edf97abd9d8d2fa2014ff7.stex"
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -23,8 +71,7 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "bush_hit"
+[sub_resource type="Animation" id=7]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Texture:material:shader_param/bulge")
@@ -47,8 +94,8 @@ script = ExtResource( 4 )
 effective_tools = [ [ "Attack", "3" ], [ "Axe", "5" ] ]
 
 [node name="Texture" parent="." index="0"]
-material = ExtResource( 3 )
-texture = ExtResource( 2 )
+material = SubResource( 5 )
+texture = SubResource( 6 )
 
 [node name="Collision" parent="." index="1"]
 position = Vector2( 0, 8 )
@@ -56,7 +103,7 @@ shape = SubResource( 1 )
 
 [node name="Animation" parent="." index="2"]
 anims/RESET = SubResource( 3 )
-anims/bush_hit = SubResource( 2 )
+anims/bush_hit = SubResource( 7 )
 
 [node name="Collision" parent="PhysicBody" index="0"]
 position = Vector2( 0, 4 )

@@ -20,9 +20,8 @@ func spawn_interactable_objects() -> void:
 	var amount: int = 0
 	for tile in terrain.grass.get_used_cells():
 		if avaliable_tile(tile):
-			var random_number: int = randi() % 300
+			var random_number: int = randi() % 100
 			if random_number <= interactable_amount and amount < interactable_amount:
-				#print(tile)
 				add_interactable(tile)
 				amount += 1
 				
