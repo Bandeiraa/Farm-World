@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/character/character_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://resources/tile/autotile_terrain_grass.tres" type="TileSet" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scripts/env/map.gd" type="Script" id=4]
 [ext_resource path="res://scripts/env/prop.gd" type="Script" id=5]
 [ext_resource path="res://resources/tile/autotile_terrain_sand.tres" type="TileSet" id=6]
+[ext_resource path="res://scenes/interactable/bush/normal_bush.tscn" type="PackedScene" id=7]
 
 [node name="Level" type="Node2D"]
 
@@ -33,6 +34,11 @@ terrain = NodePath("../Terrain")
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 16, 16 )
 format = 1
+
+[node name="InteractableOjects" type="Node2D" parent="."]
+
+[node name="Bush" parent="InteractableOjects" instance=ExtResource( 7 )]
+position = Vector2( 161, 56 )
 
 [node name="Character" parent="." instance=ExtResource( 1 )]
 terrain = NodePath("../Terrain")
