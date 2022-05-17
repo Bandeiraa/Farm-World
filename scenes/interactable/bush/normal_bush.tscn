@@ -7,7 +7,8 @@
 extents = Vector2( 8, 8 )
 
 [node name="Bush" instance=ExtResource( 1 )]
-effective_tools = [ "Axe", "Attack" ]
+health = 15
+effective_tools = [ [ "Axe", "5" ], [ "Attack", "3" ] ]
 
 [node name="Texture" parent="." index="0"]
 texture = ExtResource( 2 )

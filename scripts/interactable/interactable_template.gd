@@ -2,10 +2,17 @@ extends Area2D
 class_name InteractableTemplate
 
 export(int) var health
-export(Array, String, MULTILINE) var effective_tools
+export(Array, Array, String) var effective_tools
 
 func on_area_entered(area: CharacterInteractableArea) -> void:
 	for character_tool in effective_tools:
-		if area.current_tool == character_tool:
-			var tool_dict: Dictionary = area.tools_dict[character_tool]
-			print(tool_dict)
+		var current_tool: String = character_tool[0]
+		var tool_damage: int = int(character_tool[1])
+		if area.current_tool == current_tool:
+			update_health(tool_damage)
+			
+			
+func update_health(damage: int) -> void:
+	health -= damage
+	if health <= 0:
+		queue_free()
