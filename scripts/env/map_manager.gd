@@ -1,6 +1,8 @@
 extends YSort
 class_name MapManager
 
+var avaliable_tiles: Array = []
+
 var interactable_object_list: Array = [
 	"res://scenes/interactable/bush/normal_bush.tscn"
 ]
@@ -20,12 +22,16 @@ func spawn_interactable_objects() -> void:
 	var amount: int = 0
 	for tile in terrain.grass.get_used_cells():
 		if avaliable_tile(tile):
-			var random_number: int = randi() % 100
-			if random_number <= interactable_amount and amount < interactable_amount:
-				add_interactable(tile)
-				amount += 1
-				
-				
+			avaliable_tiles.append(tile)
+			
+	for interactable in interactable_amount:
+		var random_position: int = randi() % avaliable_tiles.size()
+		var spawn_position: Vector2 = avaliable_tiles[random_position]
+		avaliable_tiles.remove(random_position)
+		if amount < interactable_amount:
+			add_interactable(spawn_position)
+			
+			
 func avaliable_tile(tile: Vector2) -> bool:
 	if terrain.sand_tiles_list.has(tile) or prop.prop_tiles_list.has(tile):
 		return false
