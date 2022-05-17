@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "Map",
 "language": "GDScript",
 "path": "res://scripts/env/map.gd"
+}, {
+"base": "Node2D",
+"class": "Prop",
+"language": "GDScript",
+"path": "res://scripts/env/prop.gd"
 } ]
 _global_script_class_icons={
 "CharacterBase": "",
 "CharacterBody": "",
-"Map": ""
+"Map": "",
+"Prop": ""
 }
 
 [application]
