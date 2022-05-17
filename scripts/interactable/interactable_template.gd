@@ -14,9 +14,5 @@ func on_area_entered(area: CharacterInteractableArea) -> void:
 			update_health(tool_damage)
 			
 			
-func update_health(damage: int) -> void:
-	health -= damage
-	if health <= 0:
-		queue_free()
-		
-	animation.play("bush_hit")
+func update_health(_damage: int) -> void:
+	pass

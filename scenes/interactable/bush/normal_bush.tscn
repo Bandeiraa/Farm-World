@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/interactable/interactable_template.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/interactable/bush/bush.png" type="Texture" id=2]
 [ext_resource path="res://materials/squish_shader_material.tres" type="Material" id=3]
+[ext_resource path="res://scripts/interactable/normal_bush.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -39,8 +40,8 @@ tracks/0/keys = {
 }
 
 [node name="Bush" instance=ExtResource( 1 )]
-health = 15
-effective_tools = [ [ "Axe", "5" ], [ "Attack", "3" ] ]
+script = ExtResource( 4 )
+effective_tools = [ [ "Attack", "3" ], [ "Axe", "5" ] ]
 
 [node name="Texture" parent="." index="0"]
 material = ExtResource( 3 )

@@ -39,6 +39,7 @@ format = 1
 
 [node name="Bush" parent="InteractableOjects" instance=ExtResource( 7 )]
 position = Vector2( 161, 56 )
+health = 9
 
 [node name="Character" parent="." instance=ExtResource( 1 )]
 terrain = NodePath("../Terrain")
