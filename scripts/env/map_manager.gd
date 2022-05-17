@@ -19,7 +19,6 @@ func _ready() -> void:
 	
 	
 func spawn_interactable_objects() -> void:
-	var amount: int = 0
 	for tile in terrain.grass.get_used_cells():
 		if avaliable_tile(tile):
 			avaliable_tiles.append(tile)
@@ -28,10 +27,9 @@ func spawn_interactable_objects() -> void:
 		var random_position: int = randi() % avaliable_tiles.size()
 		var spawn_position: Vector2 = avaliable_tiles[random_position]
 		avaliable_tiles.remove(random_position)
-		if amount < interactable_amount:
-			add_interactable(spawn_position)
-			
-			
+		add_interactable(spawn_position)
+		
+		
 func avaliable_tile(tile: Vector2) -> bool:
 	if terrain.sand_tiles_list.has(tile) or prop.prop_tiles_list.has(tile):
 		return false

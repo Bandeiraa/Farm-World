@@ -7,6 +7,7 @@ onready var prop_id_list: Array = prop.tile_set.get_tiles_ids()
 
 var busy_tiles_list: Array #Sand tiles list
 var prop_tiles_list: Array #Prop tiles list
+var avaliable_tiles: Array
 
 export(int) var props_amount
 
@@ -26,16 +27,18 @@ func get_sand_tile_info() -> void:
 	
 	
 func spawn_prop_tile() -> void:
-	var amount: int = 0
 	for tile in terrain.grass.get_used_cells():
 		if avaliable_cell(tile):
-			var random_number: int = randi() % 300
-			if amount <= props_amount and random_number <= props_amount:
-				prop.set_cellv(tile, randi() % prop_id_list.size())
-				prop_tiles_list.append(tile)
-				amount += 1
-				
-				
+			avaliable_tiles.append(tile)
+			
+	for prop_object in props_amount:
+		var random_position: int = randi() % avaliable_tiles.size()
+		var spawn_position: Vector2 = avaliable_tiles[random_position]
+		avaliable_tiles.remove(random_position)
+		prop.set_cellv(spawn_position, randi() % prop_id_list.size())
+		prop_tiles_list.append(spawn_position)
+		
+		
 func avaliable_cell(cell: Vector2) -> bool:
 	if busy_tiles_list.has(cell):
 		return false
