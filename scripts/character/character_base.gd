@@ -3,6 +3,7 @@ class_name CharacterBase
 
 onready var body: Node2D = get_node("Body")
 onready var tool_timer: Timer = get_node("ToolTimer")
+onready var interaction_ray: RayCast2D = get_node("InteractionRay")
 
 var velocity: Vector2
 
@@ -30,6 +31,9 @@ func move() -> void:
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	).normalized()
 	
+	if direction != Vector2.ZERO:
+		interaction_ray.cast_to = direction * GlobalData.GRID_SIZE/2
+		
 	velocity = direction * speed * sprint()
 	velocity = move_and_slide(velocity)
 	
@@ -83,7 +87,7 @@ func on_tool_timer_timeout() -> void:
 	
 	
 func can_dig() -> bool:
-	var player_grid_position: Vector2 = position/GlobalData.GRID_SIZE
+	var player_grid_position: Vector2 = (position + interaction_ray.cast_to)/GlobalData.GRID_SIZE
 	var normalized_grid_position: Vector2 = Vector2(
 		round(player_grid_position.x),
 		round(player_grid_position.y)

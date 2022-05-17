@@ -702,5 +702,9 @@ anims/walk = SubResource( 3 )
 [node name="ToolTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="InteractionRay" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 8, 0 )
+
 [connection signal="animation_finished" from="Animation" to="Body" method="on_animation_finished"]
 [connection signal="timeout" from="ToolTimer" to="." method="on_tool_timer_timeout"]
