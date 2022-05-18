@@ -37,7 +37,8 @@ format = 1
 
 [node name="MapManager" type="YSort" parent="."]
 script = ExtResource( 7 )
-interactable_amount = 5
+bush_amount = 5
+rock_amount = 15
 prop = NodePath("../Prop")
 terrain = NodePath("../Terrain")
 
