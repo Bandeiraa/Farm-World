@@ -1,5 +1,7 @@
 extends InteractableTemplate
 
+const LEAVES: String = "res://scenes/effect/leaves_hit.tscn"
+
 onready var tree_texture: Sprite = get_node("Texture")
 onready var timer: Timer = get_node("GrowthTimer")
 
@@ -51,7 +53,10 @@ func update_health(damage: int) -> void:
 		if health <= 0:
 			initial_state()
 			
-			
+		animation.play("tree_hit")
+		Globals.instance_object(LEAVES, global_position)
+		
+		
 func initial_state() -> void:
 	current_state = 0
 	health = randi() % 15 + 5

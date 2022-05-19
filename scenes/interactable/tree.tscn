@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/interactable/interactable_template.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/interactable/tree/base/base_type_1.png" type="Texture" id=2]
@@ -7,6 +7,37 @@
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 7.5 )
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:material:shader_param/bulge")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "tree_hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:material:shader_param/bulge")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.2, -0.2, 0.0 ]
+}
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 7.5 )
@@ -25,6 +56,10 @@ texture = ExtResource( 2 )
 [node name="Collision" parent="." index="1"]
 position = Vector2( 0, 1 )
 shape = SubResource( 2 )
+
+[node name="Animation" parent="." index="2"]
+anims/RESET = SubResource( 3 )
+anims/tree_hit = SubResource( 4 )
 
 [node name="Collision" parent="PhysicBody" index="0"]
 position = Vector2( 0, 1 )
