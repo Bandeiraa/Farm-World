@@ -1,6 +1,7 @@
 extends Node2D
 class_name CharacterBody
 
+var flip_h: bool = false
 var sprites_dict: Dictionary = {
 	"idle": [
 		"",
@@ -104,6 +105,7 @@ func change_sprite(anim: String) -> void:
 	
 	
 func change_direction(is_flipped: bool) -> void:
+	flip_h = is_flipped
 	for children in get_children():
 		children.flip_h = is_flipped
 		

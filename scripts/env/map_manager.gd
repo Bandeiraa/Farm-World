@@ -34,7 +34,7 @@ func spawn_interactable_objects() -> void:
 	
 	
 func avaliable_tile(tile: Vector2) -> bool:
-	if terrain.sand_tiles_list.has(tile) or prop.prop_tiles_list.has(tile):
+	if terrain.full_sand_tiles_list.has(tile) or prop.prop_tiles_list.has(tile):
 		return false
 		
 	return true

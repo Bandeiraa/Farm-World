@@ -23,7 +23,7 @@ func get_sand_tile_info() -> void:
 	for tile in terrain.sand.get_used_cells():
 		busy_tiles_list.append(tile)
 		
-	terrain.sand_tiles_list = busy_tiles_list
+	terrain.full_sand_tiles_list = busy_tiles_list
 	
 	
 func spawn_prop_tile() -> void:

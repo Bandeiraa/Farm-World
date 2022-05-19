@@ -94,7 +94,7 @@ func on_tool_timer_timeout() -> void:
 func can_dig() -> bool:
 	var player_grid_position: Vector2 = (position + interaction_ray.cast_to)/GlobalData.GRID_SIZE
 	var normalized_grid_position: Vector2 = Vector2(
-		round(player_grid_position.x),
+		round(player_grid_position.x) + is_flipped_h(),
 		round(player_grid_position.y)
 	)
 	
@@ -114,3 +114,10 @@ func can_mine() -> bool:
 	
 func can_attack() -> bool:
 	return true
+	
+	
+func is_flipped_h() -> int:
+	if body.flip_h:
+		return -1
+		
+	return 0
