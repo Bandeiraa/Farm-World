@@ -7,11 +7,30 @@ onready var grass: TileMap = get_node("Grass")
 var sand_tiles_list: Array
 var grass_tiles_list: Array
 
+var initial_position: float
 var full_sand_tiles_list: Array
 
+export(Vector2) var grass_tile_length
+export(Vector2) var sand_tile_length
+
 func _ready() -> void:
+	randomize()
+	initial_position = randi() % int(grass_tile_length.x)
+	spawn_initial_tile(grass, grass_tile_length)
+	spawn_initial_tile(sand, sand_tile_length)
 	tile_configuration(grass)
 	tile_configuration(sand)
+	
+	
+func spawn_initial_tile(tile: TileMap, length: Vector2) -> void:
+	for x in length.x:
+		for y in length.y:
+			if tile.name == "Sand":
+				tile.set_cellv(Vector2(x + initial_position, y + initial_position), 0)
+			else:
+				tile.set_cellv(Vector2(x, y), 0)
+				
+	tile.update_bitmask_region()
 	
 	
 func tile_configuration(tile: TileMap) -> void:
