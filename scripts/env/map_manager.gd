@@ -30,7 +30,7 @@ func _ready() -> void:
 	
 	
 func spawn_interactable_objects() -> void:
-	for tile in terrain.grass.get_used_cells():
+	for tile in terrain.grass_tiles_list:
 		if avaliable_tile(tile):
 			avaliable_tiles.append(tile)
 			

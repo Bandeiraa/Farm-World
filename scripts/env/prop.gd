@@ -27,7 +27,7 @@ func get_sand_tile_info() -> void:
 	
 	
 func spawn_prop_tile() -> void:
-	for tile in terrain.grass.get_used_cells():
+	for tile in terrain.grass_tiles_list:
 		if avaliable_cell(tile):
 			avaliable_tiles.append(tile)
 			
