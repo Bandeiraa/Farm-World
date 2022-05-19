@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/interactable/interactable_template.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/interactable/tree/base/base_type_1.png" type="Texture" id=2]
+[ext_resource path="res://scripts/interactable/tree.gd" type="Script" id=3]
+[ext_resource path="res://materials/squish_shader_material.tres" type="Material" id=4]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 7.5 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 7.5 )
+
+[node name="Tree" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+health = 15
+effective_tools = [ [ "Axe", "5" ] ]
+growth_timer = [ 15.0, 35.0 ]
+tree_position = [ Vector2( 0, -5 ), Vector2( 0, -5 ) ]
+
+[node name="Texture" parent="." index="0"]
+material = ExtResource( 4 )
+texture = ExtResource( 2 )
+
+[node name="Collision" parent="." index="1"]
+position = Vector2( 0, 1 )
+shape = SubResource( 2 )
+
+[node name="Collision" parent="PhysicBody" index="0"]
+position = Vector2( 0, 1 )
+shape = SubResource( 1 )
+
+[node name="GrowthTimer" type="Timer" parent="." index="4"]
+one_shot = true
+
+[connection signal="timeout" from="GrowthTimer" to="." method="on_growth_timer_timeout"]

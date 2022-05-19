@@ -734,7 +734,6 @@ texture = ExtResource( 2 )
 hframes = 9
 
 [node name="Tool" type="Sprite" parent="Body"]
-z_index = 1
 texture = ExtResource( 3 )
 hframes = 9
 

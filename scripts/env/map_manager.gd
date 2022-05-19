@@ -3,6 +3,10 @@ class_name MapManager
 
 var avaliable_tiles: Array = []
 
+var tree_list: Array = [
+	"res://scenes/interactable/tree.tscn"
+]
+
 var rock_list: Array = [
 	"res://scenes/interactable/rock.tscn"
 ]
@@ -14,6 +18,7 @@ var bush_list: Array = [
 
 export(int) var bush_amount
 export(int) var rock_amount
+export(int) var tree_amount
 
 export(NodePath) onready var prop = get_node(prop) as Node2D
 export(NodePath) onready var terrain = get_node(terrain) as Node2D
@@ -31,6 +36,7 @@ func spawn_interactable_objects() -> void:
 			
 	spawn_interactable(bush_list, bush_amount)
 	spawn_interactable(rock_list, rock_amount)
+	spawn_interactable(tree_list, tree_amount)
 	
 	
 func avaliable_tile(tile: Vector2) -> bool:

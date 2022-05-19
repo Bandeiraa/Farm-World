@@ -41,6 +41,7 @@ format = 1
 script = ExtResource( 7 )
 bush_amount = 5
 rock_amount = 15
+tree_amount = 3
 prop = NodePath("../Prop")
 terrain = NodePath("../Terrain")
 
