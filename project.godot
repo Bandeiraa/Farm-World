@@ -58,6 +58,11 @@ _global_script_classes=[ {
 "class": "Prop",
 "language": "GDScript",
 "path": "res://scripts/env/prop.gd"
+}, {
+"base": "CollectableTemplate",
+"class": "Trunk",
+"language": "GDScript",
+"path": "res://scripts/collectable/trunk.gd"
 } ]
 _global_script_class_icons={
 "Bush": "",
@@ -69,7 +74,8 @@ _global_script_class_icons={
 "Level": "",
 "Map": "",
 "MapManager": "",
-"Prop": ""
+"Prop": "",
+"Trunk": ""
 }
 
 [application]

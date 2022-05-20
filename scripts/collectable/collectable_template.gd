@@ -26,3 +26,11 @@ func _ready() -> void:
 	
 func on_impulse_timer_timeout() -> void:
 	sleeping = true
+	
+	
+func on_collectable_area_body_entered(_body: CharacterBase) -> void:
+	pass
+	
+	
+func on_screen_exited():
+	queue_free()

@@ -1,7 +1,7 @@
 extends InteractableTemplate
 
 const LEAVES: String = "res://scenes/effect/leaves_hit.tscn"
-const TRUNK: String = "res://scenes/collectable/physic_item.tscn"
+const TRUNK: String = "res://scenes/collectable/trunk.tscn"
 
 onready var tree_texture: Sprite = get_node("Texture")
 onready var timer: Timer = get_node("GrowthTimer")
