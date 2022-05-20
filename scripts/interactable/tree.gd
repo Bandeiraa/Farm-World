@@ -25,28 +25,50 @@ func _ready() -> void:
 	
 func initial_configuration() -> void:
 	randomize()
-	health = randi() % 15 + 5
+	
 	var duplicated_material: Material = tree_texture.get_material().duplicate()
 	tree_texture.set_material(duplicated_material)
+	
 	var random_number: int = randi() % base_texture_list.size()
-	tree_texture.texture = load(base_texture_list[random_number])
 	base_texture = base_texture_list[random_number]
+	var initial_state: int = randi() % 3
+	current_state = initial_state
+	match_state(initial_state)
+	
+	
+func match_state(state: int) -> void:
+	match state:
+		0:
+			initial_state()
+			
+		1:
+			middle_state()
+			
+		2: 
+			final_state()
+			
+			
+func initial_state() -> void:
+	current_state = 0
+	health = randi() % 15 + 5
+	tree_texture.position = Vector2.ZERO
+	tree_texture.texture = load(base_texture)
 	timer.start(growth_timer[current_state])
 	
 	
-func on_growth_timer_timeout() -> void:
-	current_state += 1
-	match current_state:
-		1:
-			tree_texture.texture = load(trunk)
-			timer.start(growth_timer[current_state])
-			tree_texture.position = tree_position[current_state - 1]
-			
-		2:
-			tree_texture.texture = load(full_tree)
-			tree_texture.position = tree_position[current_state - 1]
-			
-			
+func middle_state() -> void:
+	health = randi() % 15 + 15
+	tree_texture.texture = load(trunk)
+	timer.start(growth_timer[current_state])
+	tree_texture.position = tree_position[current_state - 1]
+	
+	
+func final_state() -> void:
+	health = randi() % 15 + 30
+	tree_texture.texture = load(full_tree)
+	tree_texture.position = tree_position[current_state - 1]
+	
+	
 func update_health(damage: int) -> void:
 	if current_state != 0:
 		health -= damage
@@ -57,9 +79,6 @@ func update_health(damage: int) -> void:
 		Globals.instance_object(LEAVES, global_position)
 		
 		
-func initial_state() -> void:
-	current_state = 0
-	health = randi() % 15 + 5
-	tree_texture.position = Vector2.ZERO
-	tree_texture.texture = load(base_texture)
-	timer.start(growth_timer[current_state])
+func on_growth_timer_timeout() -> void:
+	current_state += 1
+	match_state(current_state)
