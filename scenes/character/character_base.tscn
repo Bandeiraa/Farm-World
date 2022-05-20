@@ -717,6 +717,7 @@ tracks/6/keys = {
 extents = Vector2( 8, 8 )
 
 [node name="Character" type="KinematicBody2D"]
+collision_layer = 2
 script = ExtResource( 1 )
 speed = 60
 
@@ -762,7 +763,7 @@ collision_mask = 3
 [node name="InteractableArea" type="Area2D" parent="."]
 position = Vector2( 8, 0 )
 collision_layer = 0
-collision_mask = 3
+collision_mask = 9
 script = ExtResource( 6 )
 
 [node name="Collision" type="CollisionShape2D" parent="InteractableArea"]
