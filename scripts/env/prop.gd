@@ -13,7 +13,7 @@ export(int) var props_amount
 
 export(NodePath) onready var terrain = get_node(terrain) as Node2D
 
-func _ready() -> void:
+func _ready():
 	randomize()
 	busy_tiles_list = terrain.full_sand_tiles_list
 	spawn_prop_tile()

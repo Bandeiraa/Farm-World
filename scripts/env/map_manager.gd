@@ -23,8 +23,7 @@ export(int) var tree_amount
 export(NodePath) onready var prop = get_node(prop) as Node2D
 export(NodePath) onready var terrain = get_node(terrain) as Node2D
 
-func _ready() -> void:
-	yield(owner, "ready")
+func _ready():
 	randomize()
 	spawn_interactable_objects()
 	

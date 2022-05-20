@@ -37,7 +37,7 @@ format = 1
 
 [node name="Prop" type="Node2D" parent="."]
 script = ExtResource( 5 )
-props_amount = 10
+props_amount = 25
 terrain = NodePath("../Terrain")
 
 [node name="Prop" type="TileMap" parent="Prop"]
@@ -47,9 +47,9 @@ format = 1
 
 [node name="MapManager" type="YSort" parent="."]
 script = ExtResource( 7 )
-bush_amount = 5
-rock_amount = 15
-tree_amount = 3
+bush_amount = 10
+rock_amount = 25
+tree_amount = 10
 prop = NodePath("../Prop")
 terrain = NodePath("../Terrain")
 
