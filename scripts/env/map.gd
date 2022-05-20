@@ -16,12 +16,26 @@ export(Vector2) var sand_tile_length
 
 func _ready() -> void:
 	randomize()
-	initial_position = randi() % int(grass_tile_length.x - sand_tile_length.x)  
+	var spawn_range: int = int(grass_tile_length.x - sand_tile_length.x)
+	initial_position = randi() % spawn_range + 1
 	spawn_initial_tile(grass, grass_tile_length)
 	spawn_initial_tile(sand, sand_tile_length)
+	unavaliable_sand_cells()
 	tile_configuration(grass)
 	tile_configuration(sand)
 	fence_configuration()
+	
+	
+func unavaliable_sand_cells() -> void:
+	full_sand_tiles_list = sand.get_used_cells()
+	for tile in full_sand_tiles_list:
+		print(tile)
+		
+	#print(full_sand_tiles_list.min())
+	#print(full_sand_tiles_list.max())
+	#print(full_sand_tiles_list)
+	
+	
 	
 	
 func spawn_initial_tile(tile: TileMap, length: Vector2) -> void:
@@ -37,10 +51,10 @@ func spawn_initial_tile(tile: TileMap, length: Vector2) -> void:
 	
 func tile_configuration(tile: TileMap) -> void:
 	var used_rect: Rect2 = tile.get_used_rect()
-	var initial_x_position: float = used_rect.position.x + 1
-	var initial_y_position: float = used_rect.position.y + 1
-	var final_x_position: float = used_rect.size.x - 2
-	var final_y_position: float = used_rect.size.y - 2
+	var initial_x_position: float = used_rect.position.x + 2
+	var initial_y_position: float = used_rect.position.y + 2
+	var final_x_position: float = used_rect.size.x - 3
+	var final_y_position: float = used_rect.size.y - 3
 	
 	for x in range(initial_x_position, final_x_position + initial_x_position):
 		for y in range(initial_y_position, final_y_position + initial_y_position):

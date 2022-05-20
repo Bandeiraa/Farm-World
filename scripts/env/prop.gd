@@ -15,15 +15,8 @@ export(NodePath) onready var terrain = get_node(terrain) as Node2D
 
 func _ready() -> void:
 	randomize()
-	get_sand_tile_info()
+	busy_tiles_list = terrain.full_sand_tiles_list
 	spawn_prop_tile()
-	
-	
-func get_sand_tile_info() -> void:
-	for tile in terrain.sand.get_used_cells():
-		busy_tiles_list.append(tile)
-		
-	terrain.full_sand_tiles_list = busy_tiles_list
 	
 	
 func spawn_prop_tile() -> void:
