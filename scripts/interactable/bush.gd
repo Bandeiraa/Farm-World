@@ -14,13 +14,13 @@ func _ready() -> void:
 	texture.set_material(duplicated_material)
 	
 	
-func update_health(damage: int) -> void:
+func update_health(_area: CharacterInteractableArea, damage: int) -> void:
 	health -= damage
 	if health <= 0:
 		kill()
 		
 	animation.play("bush_hit")
-	Globals.instance_object(LEAVES, global_position)
+	Globals.instance_object(LEAVES, global_position, null)
 	
 	
 func kill() -> void:

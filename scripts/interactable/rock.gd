@@ -22,7 +22,7 @@ func random_texture() -> void:
 	texture.texture = load(textures_list[random_number])
 	
 	
-func update_health(damage: int) -> void:
+func update_health(_area: CharacterInteractableArea, damage: int) -> void:
 	health -= damage
 	if health <= 0:
 		kill()

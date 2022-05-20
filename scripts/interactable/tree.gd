@@ -1,6 +1,7 @@
 extends InteractableTemplate
 
 const LEAVES: String = "res://scenes/effect/leaves_hit.tscn"
+const TRUNK: String = "res://scenes/collectable/physic_item.tscn"
 
 onready var tree_texture: Sprite = get_node("Texture")
 onready var timer: Timer = get_node("GrowthTimer")
@@ -69,16 +70,29 @@ func final_state() -> void:
 	tree_texture.position = tree_position[current_state - 1]
 	
 	
-func update_health(damage: int) -> void:
+func update_health(area: CharacterInteractableArea, damage: int) -> void:
 	if current_state != 0:
 		health -= damage
 		if health <= 0:
+			var direction: Vector2 = (global_position - area.owner.global_position).normalized()
+			match current_state:
+				1:
+					spawn_resources(randi() % current_state + 1, direction)
+					
+				2:
+					spawn_resources(randi() % current_state + 1, direction)
+					
 			initial_state()
 			
 		animation.play("tree_hit")
-		Globals.instance_object(LEAVES, global_position)
+		Globals.instance_object(LEAVES, global_position, null)
 		
 		
 func on_growth_timer_timeout() -> void:
 	current_state += 1
 	match_state(current_state)
+	
+	
+func spawn_resources(amount: int, player_direction: Vector2) -> void:
+	for resource in amount:
+		Globals.instance_object(TRUNK, global_position, player_direction)

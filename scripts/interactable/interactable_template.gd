@@ -14,10 +14,10 @@ func on_area_entered(area: CharacterInteractableArea) -> void:
 		var current_tool: String = character_tool[0]
 		var tool_damage: int = int(character_tool[1])
 		if area.current_tool == current_tool:
-			update_health(tool_damage)
+			update_health(area, tool_damage)
 			
 			
-func update_health(_damage: int) -> void:
+func update_health(_area: CharacterInteractableArea, _damage: int) -> void:
 	pass
 	
 	

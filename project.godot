@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/character/character_interactable_area.gd"
 }, {
+"base": "RigidBody2D",
+"class": "CollectableTemplate",
+"language": "GDScript",
+"path": "res://scripts/collectable/collectable_template.gd"
+}, {
 "base": "Area2D",
 "class": "InteractableTemplate",
 "language": "GDScript",
@@ -59,6 +64,7 @@ _global_script_class_icons={
 "CharacterBase": "",
 "CharacterBody": "",
 "CharacterInteractableArea": "",
+"CollectableTemplate": "",
 "InteractableTemplate": "",
 "Level": "",
 "Map": "",
