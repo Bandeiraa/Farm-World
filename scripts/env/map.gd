@@ -15,7 +15,7 @@ export(Vector2) var sand_tile_length
 
 func _ready() -> void:
 	randomize()
-	initial_position = randi() % int(grass_tile_length.x)
+	initial_position = randi() % int(grass_tile_length.x - sand_tile_length.x)  
 	spawn_initial_tile(grass, grass_tile_length)
 	spawn_initial_tile(sand, sand_tile_length)
 	tile_configuration(grass)
