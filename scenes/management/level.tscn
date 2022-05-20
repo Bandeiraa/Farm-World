@@ -15,8 +15,8 @@ script = ExtResource( 8 )
 
 [node name="Terrain" type="Node2D" parent="."]
 script = ExtResource( 4 )
-grass_tile_length = Vector2( 25, 25 )
-sand_tile_length = Vector2( 5, 5 )
+grass_tile_length = Vector2( 50, 50 )
+sand_tile_length = Vector2( 15, 15 )
 
 [node name="Grass" type="TileMap" parent="Terrain"]
 tile_set = ExtResource( 2 )

@@ -80,7 +80,7 @@ func fence_configuration() -> void:
 	var used_rect: Rect2 = grass.get_used_rect()
 	for x in range(used_rect.position.x, used_rect.size.x):
 		for y in range(used_rect.position.y, used_rect.size.y):
-			if x == 0 or x == 24 or y == 0 or y == 24:
+			if x == used_rect.position.x or x == used_rect.size.x - 1 or y == used_rect.position.y or y == used_rect.size.y - 1:
 				fence.set_cellv(Vector2(x, y), 0)
 				
 	fence.update_bitmask_region()
