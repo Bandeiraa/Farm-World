@@ -3,6 +3,7 @@ class_name Map
 
 onready var sand: TileMap = get_node("Sand")
 onready var grass: TileMap = get_node("Grass")
+onready var fence: TileMap = get_node("Fence")
 
 var sand_tiles_list: Array
 var grass_tiles_list: Array
@@ -20,6 +21,7 @@ func _ready() -> void:
 	spawn_initial_tile(sand, sand_tile_length)
 	tile_configuration(grass)
 	tile_configuration(sand)
+	fence_configuration()
 	
 	
 func spawn_initial_tile(tile: TileMap, length: Vector2) -> void:
@@ -48,3 +50,13 @@ func tile_configuration(tile: TileMap) -> void:
 					
 				"Sand":
 					sand_tiles_list.append(Vector2(x, y))
+					
+					
+func fence_configuration() -> void:
+	var used_rect: Rect2 = grass.get_used_rect()
+	for x in range(used_rect.position.x, used_rect.size.x):
+		for y in range(used_rect.position.y, used_rect.size.y):
+			if x == 0 or x == 24 or y == 0 or y == 24:
+				fence.set_cellv(Vector2(x, y), 0)
+				
+	fence.update_bitmask_region()
